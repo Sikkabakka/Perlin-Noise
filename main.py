@@ -1,25 +1,22 @@
-import numpy as np
-from random import uniform
+import pygame as pg
+from noise_maker import Noise_maker
 
-import math
+pg.init()
 
-class Noise_maker():
-    def __init__(self, size):
-        self.size = size
-        self.grid = self.make_grid(self.size)
+pixels = 100
+screen = pg.display.set_mode((pixels, pixels))
 
-    def rand_vector(self):
-        x = uniform(0, math.pi * 2)
-        return np.array([np.cos(x), np.sin(x)])
-    
-    def make_grid(self, size):
-        return [[self.rand_vector() for i in range(size)] for i in range(size)]
-    def find_value(self, position):
-        #ta en position, finn alle vectorene i hjørnene, også finne noe annet også
-        #noe med dot product, men dette skal være lett
-        pass
-    def find_corners(self, index):
-        pass
+running = True
 
-noise_maker = Noise_maker(3)
-print(noise_maker.grid)
+noise_maker = Noise_maker(5, pixels)
+map = noise_maker.make_map()
+while running:
+    for event in pg.event.get():
+        if event.type == pg.QUIT:
+            running = False
+    for i in range(pixels-1):
+        for j in range(pixels-1):
+            screen.set_at((j, i), (255/2,255/2,255/2))
+
+pg.display.update()    
+pg.quit()
