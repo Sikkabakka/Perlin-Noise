@@ -3,6 +3,7 @@ from random import uniform, randint
 import os
 import math
 
+#for debugging
 class Pixel():
     def __init__(self):
         self.pixel_count = None
@@ -52,7 +53,9 @@ class Noise_maker():
     def smoothstep(self, t):
         t = max(0, min(1, t))
         return t * t * (3 - 2 * t)
-    
+    def clamp(self, value):
+        pass
+
     def find_value(self, position):
         corners = self.find_corners(position)
 
@@ -61,21 +64,14 @@ class Noise_maker():
 
         dot_products = [np.dot(corner_normal_vectors[i], corner_vectors[i]) for i in range(4)]
        
-        # linear interpolation with x and y values as weights
-        # x_weight = self.smoothstep(position[0] - corners[0][0])
-        x_weight = position[0] - corners[0][0]
+      
+        x_weight = self.smoothstep(position[0] - corners[0][0])
         l_interpolation = self.lerp(dot_products[0], dot_products[1], x_weight)
         s_interpolation = self.lerp(dot_products[2], dot_products[3], x_weight)
 
-        # y_weight = self.smoothstep(position[1]-corners[0][1])
-        y_weight = position[1]-corners[0][1]
+        y_weight = self.smoothstep(position[1]-corners[0][1])
         y_interpolation =self.lerp(l_interpolation, s_interpolation, y_weight)
-        # if y_interpolation > 1:
-        #     print("bigger then 1")
-        #     print(l_interpolation, "l_inter")
-        #     print("inputs: ", dot_products[0], dot_products[2], x_weight)
-        #     print(s_interpolation, "s_inter")
-        #     print(y_interpolation, "y_inte")
+
         return y_interpolation
     def find_pixels(self, grid_index):
         
@@ -83,12 +79,12 @@ class Noise_maker():
         for i in range(self.pixels):
                 temp = []
                 for j in range(self.pixels):
-                    pixel = Pixel()
-                    pixel.pixel_count = (j, i)
-                    pixel.value = self.find_value(np.array([grid_index[0] + 1/self.pixels * j, grid_index[1]+ 1/self.pixels *i])) 
-                    pixel.position = grid_index[0] + 1/self.pixels * j, grid_index[1]+ 1/self.pixels *i
-                    pixel.corners = self.find_corners(pixel.position)
-                    temp.append(pixel)
+                    # pixel = Pixel()
+                    # pixel.pixel_count = (j, i)
+                    # pixel.value = self.find_value(np.array([grid_index[0] + 1/self.pixels * j, grid_index[1]+ 1/self.pixels *i])) 
+                    # pixel.position = grid_index[0] + 1/self.pixels * j, grid_index[1]+ 1/self.pixels *i
+                    # pixel.corners = self.find_corners(pixel.position)
+                    temp.append(self.find_value(np.array([grid_index[0] + 1/self.pixels * j, grid_index[1]+ 1/self.pixels *i])))
                 map.append(temp)
         return map
     def make_map(self): 
@@ -100,6 +96,6 @@ class Noise_maker():
             map.append(temp)
             
         return map
-test = Noise_maker
+
 if __name__ == "__main__":
     os.system("python3 main.py")
