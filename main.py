@@ -4,8 +4,9 @@ from layerer import Layerer
 pg.init()
 
 
-size = 1000
-grid_size = 4
+size = 800
+grid_size = 10
+
 pixels = size//grid_size
 box_size = 1
 
@@ -18,8 +19,6 @@ draw_arrows = False
 
 # noise_maker = Noise_maker(grid_size, pixels)
 # map = noise_maker.make_map()
-
-
 
 layerer = Layerer(5, size, 2, 10)
 map = layerer.make_layered_map()
@@ -65,10 +64,10 @@ while running:
 
     #                 color_value = round(255 / 2 * pixel_value)
     #                 screen.set_at((x * pixels+ padding//2 + j , y * pixels + padding//2 + i), (color_value, color_value, color_value))
-    if draw_arrows:
-        for y, row in enumerate(noise_maker.grid_vectors):
-            for x, direction in enumerate(row):
-                draw_arrow(direction, (x, y))
+    # if draw_arrows:
+    #     for y, row in enumerate(noise_maker.grid_vectors):
+    #         for x, direction in enumerate(row):
+    #             draw_arrow(direction, (x, y))
 
 
     pg.display.update()    

@@ -1,8 +1,10 @@
 
-size = 5
+grid_size = 10
+i = 10
 
-ting = [[i+j for i in range(size +1)] for j in range(size +1)]
 
-for i in range(size):
-    for j in range(size):
-        print(ting[i][j])
+
+
+row = i//grid_size
+row_row = i - row *grid_size
+print(row, row_row)
