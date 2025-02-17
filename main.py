@@ -20,7 +20,7 @@ draw_arrows = False
 # noise_maker = Noise_maker(grid_size, pixels)
 # map = noise_maker.make_map()
 
-layerer = Layerer(5, size, 2, 10)
+layerer = Layerer(8, size, 2)
 map = layerer.make_layered_map()
 def draw_arrow(direction, position, size =1):
     pg.draw.line(screen, (255, 0, 0), (position[0]* pixels + padding/2, position[1]*pixels + padding/2), (position[0]* pixels + padding/2 + direction[0]*10, position[1]*pixels + padding/2+direction[1]*10), 3)
@@ -37,7 +37,8 @@ while running:
             pixel_value =map[i][j]
 
             color_value = round(255 * pixel_value)
-            screen.set_at((j + padding, i +padding), (color_value, color_value, color_value))
+
+            screen.set_at((j + padding//2, i +padding//2), (color_value, color_value, color_value))
 
 
     # for y, row in enumerate(map):
