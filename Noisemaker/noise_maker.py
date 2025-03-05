@@ -3,14 +3,7 @@ from random import uniform, randint
 import os
 import math
 
-#for debugging
-class Pixel():
-    def __init__(self):
-        self.pixel_count = None
-        self.position = None
-        self.value = None
-        self.corners = None
-        
+
 
 class Noise_maker():
     def __init__(self, grid_size, pixels):

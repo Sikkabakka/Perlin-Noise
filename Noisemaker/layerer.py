@@ -2,6 +2,7 @@ from noise_maker import Noise_maker
 import numpy as np
 import os
 import math 
+
 class Layerer():
     def __init__(self, layers, size, start_grid_size):
         self.layers = layers

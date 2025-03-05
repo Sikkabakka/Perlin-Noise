@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://drd3s47ixtjo0"]
+
+[ext_resource type="Script" path="res://landscape.gd" id="1_ce05k"]
+[ext_resource type="Script" path="res://main.gd" id="1_i3fdj"]
+[ext_resource type="Script" path="res://mesh_instance_3d.gd" id="2_oeubh"]
+[ext_resource type="Script" path="res://camera_3d.gd" id="4_k3mvr"]
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.16461, 0)
+script = ExtResource("1_i3fdj")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.868248, 0, 0)
+script = ExtResource("1_ce05k")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+script = ExtResource("2_oeubh")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.453991, -0.891006, 0, 0.891006, 0.453991, 0, 500, 0)
+script = ExtResource("4_k3mvr")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 19.895)
+light_color = Color(1, 0.278431, 1, 1)
+light_energy = 0.111

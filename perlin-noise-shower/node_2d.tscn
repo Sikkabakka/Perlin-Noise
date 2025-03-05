@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dojfpes3idxas"]
+
+[ext_resource type="Script" path="res://noise_maker.gd" id="1_3sewu"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+script = ExtResource("1_3sewu")
